@@ -1,29 +1,44 @@
+*,
+html {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 body {
   font-family: Arial, Helvetica, sans-serif;
-  background: #737373;
-  color: white;
+  background: AliceBlue;
+}
+
+main {
+  background: MidnightBlue;
+  color: AliceBlue;
+  margin: 0 auto;
+  max-width: 800px;
+  padding: 16px;
 }
 
 nav {
   text-align: center;
 }
 
+#content {
+  min-height: 100vh;
+  padding: 0 16px;
+}
+
 h1 {
-  margin-top: 40px;
+  font-size: 2rem;
+  margin: 40px 0 16px 0;
 }
 
 button {
-  padding: 0.5rem 1rem;
   border: 1px solid black;
   border-radius: 5px;
-  margin-inline: 5px;
   cursor: pointer;
+  margin-inline: 5px;
+  padding: 0.5rem 1rem;
 }
 
 button:focus {
-  outline: none;
-}
-
-button:focus-visible {
-  outline: 5px solid Highlight;
+  outline: 2px solid AliceBlue;
 }

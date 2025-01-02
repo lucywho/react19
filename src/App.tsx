@@ -1,20 +1,22 @@
-import { memo, useState } from 'react';
-import React from 'react';
+import { memo, useState, useTransition } from 'react';
 import ReactDOM from 'react-dom/client';
 import { sleep } from './utils';
 import products from './data';
 
 export default function App() {
   const [tab, setTab] = useState('home');
+  const [isPending, startTransition] = useTransition();
 
   function switchTab(tab: string) {
-    setTab(tab);
+    startTransition(() => {
+      setTab(tab);
+    });
   }
 
   function setStyles(thisTab: string) {
     return {
-      backgroundColor: tab === thisTab ? 'blue' : 'white',
-      color: thisTab === tab ? 'white' : 'blue',
+      backgroundColor: tab === thisTab ? 'DodgerBlue' : 'AliceBlue',
+      color: thisTab === tab ? 'AliceBlue' : 'MidnightBlue',
     };
   }
 
@@ -34,10 +36,16 @@ export default function App() {
           About
         </button>
       </nav>
-      <div>
-        {tab === 'home' && <h1>Home</h1>}
-        {tab === 'products' && <Products />}
-        {tab === 'about' && <h1>About</h1>}
+      <div id='content'>
+        {isPending && <h1>Loading...</h1>}
+        {!isPending && tab === 'home' && <h1>Home page</h1>}
+        {!isPending && tab === 'products' && (
+          <>
+            <h1>Products page</h1>
+            <Products />
+          </>
+        )}
+        {!isPending && tab === 'about' && <h1>About page</h1>}
       </div>
     </main>
   );
@@ -48,12 +56,7 @@ const Products = memo(function () {
     <SlowProduct key={product.id} product={product} />
   ));
 
-  return (
-    <>
-      <h1>Products page</h1>
-      <ul>{productsList}</ul>
-    </>
-  );
+  return <ul>{productsList}</ul>;
 });
 
 function SlowProduct({ product }: any) {
