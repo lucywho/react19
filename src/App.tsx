@@ -5,18 +5,24 @@ import products from './data';
 
 export default function App() {
   const [tab, setTab] = useState('home');
+  const [focusTab, setFocusTab] = useState('home');
   const [isPending, startTransition] = useTransition();
 
   function switchTab(tab: string) {
+    setFocusTab(tab);
     startTransition(() => {
       setTab(tab);
     });
   }
-
   function setStyles(thisTab: string) {
     return {
-      backgroundColor: tab === thisTab ? 'DodgerBlue' : 'AliceBlue',
-      color: thisTab === tab ? 'AliceBlue' : 'MidnightBlue',
+      backgroundColor:
+        thisTab === focusTab
+          ? isPending
+            ? 'LightSlateGray'
+            : 'DodgerBlue'
+          : 'AliceBlue',
+      color: thisTab === focusTab ? 'AliceBlue' : 'MidnightBlue',
     };
   }
 
