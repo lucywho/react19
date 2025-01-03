@@ -1,13 +1,22 @@
 import { useState } from 'react';
+import { updateNameInDB } from './api';
 
 const About = () => {
-  const [name, setName] = useState('no name set');
+  const [name, setName] = useState(
+    localStorage.getItem('fullname') || 'Anonymous user'
+  );
 
-  function formAction(formData: FormData) {
-    const newFirstName = formData.get('firstname');
-    const newLastName = formData.get('lastname');
-    if (newFirstName || newLastName) {
-      setName(`${newFirstName} ${newLastName}` as string);
+  async function formAction(formData: FormData) {
+    try {
+      const firstname = formData.get('firstname');
+      const lastname = formData.get('lastname');
+      const name = `${firstname} ${lastname}`;
+      if (name !== null) {
+        const newName = await updateNameInDB(name as string);
+        setName(newName);
+      }
+    } catch (error) {
+      console.error(error);
     }
   }
 
@@ -18,7 +27,7 @@ const About = () => {
       </h2>
       <form action={formAction}>
         <section className='form-section'>
-          <label htmlFor='name1'>Given Name:</label>
+          <label htmlFor='name1'>Name:</label>
           <input type='text' id='name1' name='firstname' required />
         </section>
         <section className='form-section'>
