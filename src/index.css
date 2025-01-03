@@ -10,9 +10,9 @@ html {
   --dark-bg-color: MidnightBlue;
   --light-text-color: AliceBlue;
   --dark-text-color: MidnightBlue;
-  --accent-color: DodgerBlue;
-  --light-accent-color: PaleTurquoise;
-  --focus-color: Gold;
+  --accent-color: #7e78d2;
+  --light-accent-color: #beffc7;
+  --focus-color: #ffbc42;
   --pending-color: LightSlateGray;
 }
 body {
