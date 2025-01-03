@@ -1,6 +1,7 @@
 import { useState, useTransition } from 'react';
 import ReactDOM from 'react-dom/client';
 import Products from './Products';
+import { NavBar } from './Nav';
 
 export default function App() {
   const [tab, setTab] = useState('home');
@@ -16,32 +17,12 @@ export default function App() {
 
   return (
     <main>
-      <nav>
-        <button
-          className={`tab-button ${
-            focusTab === 'home' ? 'active' : 'inactive'
-          } ${isPending ? 'pending' : ''}`}
-          onClick={() => switchTab('home')}
-        >
-          Home
-        </button>
-        <button
-          className={`tab-button ${
-            focusTab === 'products' ? 'active' : 'inactive'
-          } ${isPending ? 'pending' : ''}`}
-          onClick={() => switchTab('products')}
-        >
-          Products
-        </button>
-        <button
-          className={`tab-button ${
-            focusTab === 'about' ? 'active' : 'inactive'
-          } ${isPending ? 'pending' : ''}`}
-          onClick={() => switchTab('about')}
-        >
-          About
-        </button>
-      </nav>
+      <NavBar
+        tab={tab}
+        focusTab={focusTab}
+        switchTab={switchTab}
+        isPending={isPending}
+      />
       <div id='content'>
         {isPending && <h1>Loading...</h1>}
         {!isPending && tab === 'home' && <h1>Home page</h1>}
