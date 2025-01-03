@@ -1,7 +1,8 @@
 import { useState, useTransition } from 'react';
 import ReactDOM from 'react-dom/client';
 import Products from './Products';
-import { NavBar } from './Nav';
+import NavBar from './Nav';
+import About from './About';
 
 export default function App() {
   const [tab, setTab] = useState('home');
@@ -32,7 +33,12 @@ export default function App() {
             <Products />
           </>
         )}
-        {!isPending && tab === 'about' && <h1>About page</h1>}
+        {!isPending && tab === 'about' && (
+          <>
+            <h1>About page</h1>
+            <About />
+          </>
+        )}
       </div>
     </main>
   );

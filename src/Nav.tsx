@@ -6,7 +6,7 @@ type NavBarProps = {
   switchTab: (tab: string) => void;
   isPending: boolean;
 };
-export const NavBar: React.FC<NavBarProps> = ({
+const NavBar: React.FC<NavBarProps> = ({
   tab,
   focusTab,
   switchTab,
@@ -41,3 +41,5 @@ export const NavBar: React.FC<NavBarProps> = ({
     </nav>
   );
 };
+
+export default NavBar;

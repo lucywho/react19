@@ -4,18 +4,31 @@ html {
   padding: 0;
   box-sizing: border-box;
 }
+
+:root {
+  --light-bg-color: AliceBlue;
+  --dark-bg-color: MidnightBlue;
+  --light-text-color: AliceBlue;
+  --dark-text-color: MidnightBlue;
+  --accent-color: DodgerBlue;
+  --light-accent-color: PaleTurquoise;
+  --focus-color: Gold;
+  --pending-color: LightSlateGray;
+}
 body {
   font-family: Arial, Helvetica, sans-serif;
-  background: AliceBlue;
+  background: var(--light-bg-color);
 }
 
 main {
-  background: MidnightBlue;
-  color: AliceBlue;
+  background: var(--dark-bg-color);
+  color: var(--light-text-color);
   margin: 0 auto;
   max-width: 800px;
   padding: 16px;
 }
+
+/* Nav */
 
 nav {
   text-align: center;
@@ -40,19 +53,57 @@ button {
 }
 
 button:focus {
-  outline: 2px solid AliceBlue;
+  outline: 2px solid var(--focus-color);
 }
 
 .tab-button {
-  background-color: DodgerBlue;
-  color: AliceBlue;
+  background-color: var(--accent-color);
+  color: var(--light-text-color);
 }
 
 .tab-button.pending {
-  background-color: LightSlateGray;
+  background-color: var(--pending-color);
 }
 
 .tab-button.inactive {
-  background-color: AliceBlue;
-  color: MidnightBlue;
+  background-color: var(--light-bg-color);
+  color: var(--dark-text-color);
+}
+
+/* About */
+
+#about-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.username {
+  margin-bottom: 20px;
+}
+
+.form-section {
+  align-items: center;
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 20px;
+}
+
+.form-section label {
+  margin-right: 20px;
+  width: 100px;
+}
+
+.form-section input {
+  border-radius: 5px;
+  height: 2rem;
+  width: 200px;
+  padding-left: 5px;
+}
+
+input:focus {
+  outline: 2px solid var(--focus-color);
+}
+
+#user-name {
+  color: var(--light-accent-color);
 }
