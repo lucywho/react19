@@ -42,3 +42,17 @@ button {
 button:focus {
   outline: 2px solid AliceBlue;
 }
+
+.tab-button {
+  background-color: DodgerBlue;
+  color: AliceBlue;
+}
+
+.tab-button.pending {
+  background-color: LightSlateGray;
+}
+
+.tab-button.inactive {
+  background-color: AliceBlue;
+  color: MidnightBlue;
+}

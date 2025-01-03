@@ -1,11 +1,5 @@
 import { faker } from '@faker-js/faker';
 
-enum Color {
-  Red = 'Red',
-  Green = 'Green',
-  Blue = 'Blue',
-}
-
 const products = new Array(1500).fill(null).map(() => ({
   id: faker.database.mongodbObjectId(),
   name: faker.commerce.productName(),

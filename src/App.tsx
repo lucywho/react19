@@ -1,7 +1,6 @@
-import { memo, useState, useTransition } from 'react';
+import { useState, useTransition } from 'react';
 import ReactDOM from 'react-dom/client';
-import { sleep } from './utils';
-import products from './data';
+import Products from './Products';
 
 export default function App() {
   const [tab, setTab] = useState('home');
@@ -14,31 +13,32 @@ export default function App() {
       setTab(tab);
     });
   }
-  function setStyles(thisTab: string) {
-    return {
-      backgroundColor:
-        thisTab === focusTab
-          ? isPending
-            ? 'LightSlateGray'
-            : 'DodgerBlue'
-          : 'AliceBlue',
-      color: thisTab === focusTab ? 'AliceBlue' : 'MidnightBlue',
-    };
-  }
 
   return (
     <main>
       <nav>
-        <button onClick={() => switchTab('home')} style={setStyles('home')}>
+        <button
+          className={`tab-button ${
+            focusTab === 'home' ? 'active' : 'inactive'
+          } ${isPending ? 'pending' : ''}`}
+          onClick={() => switchTab('home')}
+        >
           Home
         </button>
         <button
+          className={`tab-button ${
+            focusTab === 'products' ? 'active' : 'inactive'
+          } ${isPending ? 'pending' : ''}`}
           onClick={() => switchTab('products')}
-          style={setStyles('products')}
         >
           Products
         </button>
-        <button onClick={() => switchTab('about')} style={setStyles('about')}>
+        <button
+          className={`tab-button ${
+            focusTab === 'about' ? 'active' : 'inactive'
+          } ${isPending ? 'pending' : ''}`}
+          onClick={() => switchTab('about')}
+        >
           About
         </button>
       </nav>
@@ -57,21 +57,9 @@ export default function App() {
   );
 }
 
-const Products = memo(function () {
-  let productsList = products.map((product, i) => (
-    <SlowProduct key={product.id} product={product} />
-  ));
-
-  return <ul>{productsList}</ul>;
-});
-
-function SlowProduct({ product }: any) {
-  sleep(1);
-  return <li>Product: {product.name}</li>;
-}
-
 const rootElement = document.getElementById('root');
 if (!rootElement) {
   throw new Error('Failed to find the root element');
 }
+
 ReactDOM.createRoot(rootElement).render(<App />);
