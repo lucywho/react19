@@ -16,8 +16,8 @@ html {
   --pending-color: LightSlateGray;
 }
 body {
-  font-family: Arial, Helvetica, sans-serif;
   background: var(--light-bg-color);
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 main {
@@ -96,8 +96,8 @@ button:focus {
 .form-section input {
   border-radius: 5px;
   height: 2rem;
-  width: 200px;
   padding-left: 5px;
+  width: 200px;
 }
 
 input:focus {
@@ -110,6 +110,12 @@ input:focus {
 
 #user-message {
   color: var(--focus-color);
-  min-height: 1.25rem;
   margin-bottom: 20px;
+  min-height: 1.25rem;
+}
+
+.user-name-submit {
+  display: block;
+  text-align: center;
+  width: 100px;
 }

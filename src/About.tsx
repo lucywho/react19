@@ -1,6 +1,8 @@
 import React from 'react';
 import { useActionState, useOptimistic } from 'react';
 import { updateNameInDB } from './api';
+import SubmitButton from './SubmitButton';
+
 type stateType = {
   error: Error | null;
   name: string;
@@ -46,7 +48,7 @@ const About = () => {
         Current user: {state && <span id='user-name'>{optimisticName}</span>}
       </h2>
       <p id='user-message'>
-        {isPending && <span>Updating ...</span>}
+        {/* {isPending && <span>Updating ...</span>} --> user feedback message no longer needed as display updates immediately */}
         {state?.error && !isPending && <span>{state.error.message}</span>}
       </p>
       <form action={actionFunction}>
@@ -58,9 +60,9 @@ const About = () => {
           <label htmlFor='name2'>Family Name:</label>
           <input type='text' id='name2' name='lastname' required />
         </section>
-        <button type='submit' className='form-section'>
+        <SubmitButton type='submit' className='form-section user-name-submit'>
           Update
-        </button>
+        </SubmitButton>
       </form>
     </section>
   );
