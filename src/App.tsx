@@ -1,9 +1,9 @@
-import React from 'react';
+/* eslint-disable react/react-in-jsx-scope */
 import { useState, useTransition } from 'react';
-import ReactDOM from 'react-dom/client';
 import Products from './Products';
 import NavBar from './Nav';
 import About from './About';
+import Pokemon from './Pokemon';
 
 export default function App() {
   const [tab, setTab] = useState('home');
@@ -34,20 +34,19 @@ export default function App() {
             <Products />
           </>
         )}
-        {!isPending && tab === 'about' && (
+        {!isPending && tab === 'about-you' && (
           <>
-            <h1>About page</h1>
+            <h1>About You page</h1>
             <About />
+          </>
+        )}
+        {!isPending && tab === 'pokemon' && (
+          <>
+            <h1>Pokemon</h1>
+            <Pokemon />
           </>
         )}
       </div>
     </main>
   );
 }
-
-const rootElement = document.getElementById('root');
-if (!rootElement) {
-  throw new Error('Failed to find the root element');
-}
-
-ReactDOM.createRoot(rootElement).render(<App />);

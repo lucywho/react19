@@ -6,12 +6,7 @@ type NavBarProps = {
   switchTab: (tab: string) => void;
   isPending: boolean;
 };
-const NavBar: React.FC<NavBarProps> = ({
-  tab,
-  focusTab,
-  switchTab,
-  isPending,
-}) => {
+const NavBar: React.FC<NavBarProps> = ({ focusTab, switchTab, isPending }) => {
   return (
     <nav>
       <button
@@ -32,11 +27,19 @@ const NavBar: React.FC<NavBarProps> = ({
       </button>
       <button
         className={`tab-button ${
-          focusTab === 'about' ? 'active' : 'inactive'
+          focusTab === 'about-you' ? 'active' : 'inactive'
         } ${isPending ? 'pending' : ''}`}
-        onClick={() => switchTab('about')}
+        onClick={() => switchTab('about-you')}
       >
-        About
+        About You
+      </button>
+      <button
+        className={`tab-button ${
+          focusTab === 'pokemon' ? 'active' : 'inactive'
+        } ${isPending ? 'pending' : ''}`}
+        onClick={() => switchTab('pokemon')}
+      >
+        Pokemon
       </button>
     </nav>
   );

@@ -119,3 +119,9 @@ input:focus {
   text-align: center;
   width: 100px;
 }
+
+/* Pokemon */
+
+#fetch-pokemon {
+  margin-bottom: 20px;
+}
