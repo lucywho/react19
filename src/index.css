@@ -107,3 +107,9 @@ input:focus {
 #user-name {
   color: var(--light-accent-color);
 }
+
+#user-message {
+  color: var(--focus-color);
+  min-height: 1.25rem;
+  margin-bottom: 20px;
+}

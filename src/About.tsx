@@ -1,31 +1,49 @@
+import React from 'react';
 import { useActionState } from 'react';
 import { updateNameInDB } from './api';
+type stateType = {
+  error: Error | null;
+  name: string;
+};
 
 const About = () => {
-  const [name, actionFunction, isPending] = useActionState(
-    formAction,
-    localStorage.getItem('name') || 'Anonymous user'
-  );
+  const [state, actionFunction, isPending] = useActionState(updateName, {
+    error: null,
+    name: localStorage.getItem('name') || 'Anonymous user',
+  });
 
-  async function formAction(prevState: string | undefined, formData: FormData) {
+  async function updateName(
+    prevState: stateType | undefined,
+    formData: FormData
+  ) {
     try {
       const firstname = formData.get('firstname');
       const lastname = formData.get('lastname');
       const name = `${firstname} ${lastname}`;
       if (name !== null) {
         const newName = await updateNameInDB(name as string);
-        return newName;
+        return {
+          error: null,
+          name: newName,
+        };
       }
     } catch (error) {
-      console.error(error);
+      return {
+        error: error as Error,
+        name: prevState?.name as string,
+      };
     }
   }
 
   return (
     <section id='about-form'>
       <h2 className='username'>
-        Current user: <span id='user-name'>{name}</span>
+        Current user: {state && <span id='user-name'>{state.name}</span>}
       </h2>
+      <p id='user-message'>
+        {isPending && <span>Updating ...</span>}
+        {state?.error && !isPending && <span>{state.error.message}</span>}
+      </p>
       <form action={actionFunction}>
         <section className='form-section'>
           <label htmlFor='name1'>Name:</label>
