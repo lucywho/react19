@@ -7,7 +7,10 @@ type submitButtonType = {
   className: string;
 };
 
-export default function SubmitButton({ children, ...props }: submitButtonType) {
+export default function SubmitButton({
+  children,
+  ...props
+}: submitButtonType): React.ReactElement {
   const { pending } = useFormStatus();
   return <button {...props}>{pending ? 'Updating...' : children}</button>;
 }

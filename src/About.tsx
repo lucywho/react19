@@ -1,5 +1,4 @@
-import React from 'react';
-import { useActionState, useOptimistic } from 'react';
+import React, { useActionState, useOptimistic } from 'react';
 import { updateNameInDB } from './api';
 import SubmitButton from './SubmitButton';
 
@@ -8,7 +7,7 @@ type stateType = {
   name: string;
 };
 
-const About = () => {
+const About: React.FC = () => {
   const [state, actionFunction, isPending] = useActionState(updateName, {
     error: null,
     name: localStorage.getItem('name') || 'Anonymous user',
@@ -40,6 +39,10 @@ const About = () => {
         name: prevState?.name as string,
       };
     }
+    return {
+      error: null,
+      name: prevState?.name as string,
+    };
   }
 
   return (
