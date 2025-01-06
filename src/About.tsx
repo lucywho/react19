@@ -1,5 +1,5 @@
 import React from 'react';
-import { useActionState } from 'react';
+import { useActionState, useOptimistic } from 'react';
 import { updateNameInDB } from './api';
 type stateType = {
   error: Error | null;
@@ -12,14 +12,19 @@ const About = () => {
     name: localStorage.getItem('name') || 'Anonymous user',
   });
 
+  const [optimisticName, setOptimisticName] = useOptimistic(state?.name);
+
   async function updateName(
     prevState: stateType | undefined,
     formData: FormData
   ) {
+    const firstname = formData.get('firstname');
+    const lastname = formData.get('lastname');
+    const name = `${firstname} ${lastname}`;
+
+    setOptimisticName(name);
+
     try {
-      const firstname = formData.get('firstname');
-      const lastname = formData.get('lastname');
-      const name = `${firstname} ${lastname}`;
       if (name !== null) {
         const newName = await updateNameInDB(name as string);
         return {
@@ -38,7 +43,7 @@ const About = () => {
   return (
     <section id='about-form'>
       <h2 className='username'>
-        Current user: {state && <span id='user-name'>{state.name}</span>}
+        Current user: {state && <span id='user-name'>{optimisticName}</span>}
       </h2>
       <p id='user-message'>
         {isPending && <span>Updating ...</span>}
