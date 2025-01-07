@@ -1,44 +1,38 @@
-// @ts-nocheck
+/* eslint-disable react/react-in-jsx-scope */
+import { use, useState } from 'react';
 
-'use server';
-import React from 'react';
-import { Suspense, useState, use } from 'react';
+const promiseCache = new Map();
 
+function getFetchPromise(url: string) {
+  if (!promiseCache.has(url)) {
+    const fetchPromise = fetch(url).then((res) => res.json());
+    promiseCache.set(url, fetchPromise);
+  }
+  return promiseCache.get(url);
+}
 export default function Pokemon() {
-  //   const fetchPromise = fetch('https://pokeapi.co/api/v2/pokemon/ditto').then(
-  //     (res) => res.json()
-  //   );
+  const [url, setUrl] = useState('');
 
-  //   const pokemon = use(fetchPromise);
-
-  const [pokemon, setPokemon] = useState(null);
-
-  const fetchPokemon = async () => {
-    const res = await fetch('https://pokeapi.co/api/v2/pokemon/ditto');
-    const data = await res.json();
-    setPokemon(data);
-  };
-
-  const clearPokemon = () => {
-    setPokemon(null);
+  const pokemon = url ? use(getFetchPromise(url)) : null;
+  const togglePokemon = () => {
+    if (url) {
+      setUrl('');
+    } else {
+      setUrl('https://pokeapi.co/api/v2/pokemon/1');
+    }
   };
 
   return (
     <>
-      <button onClick={fetchPokemon} id='fetch-pokemon'>
-        Fetch Pokemon
+      <button onClick={togglePokemon} id='fetch-pokemon'>
+        {url ? 'Clear Pokemon' : 'Fetch Pokemon'}
       </button>
-      <button onClick={clearPokemon} id='clear-pokemon'>
-        Clear Pokemon
-      </button>
-      {pokemon ? (
-        <Suspense fallback={<p>Please wait</p>}>
-          <>
-            <pre style={{ whiteSpace: 'pre-wrap', wordWrap: 'break-word' }}>
-              <code>{JSON.stringify(pokemon, null, 1)}</code>
-            </pre>
-          </>
-        </Suspense>
+      {url && pokemon ? (
+        <>
+          <pre style={{ whiteSpace: 'pre-wrap', wordWrap: 'break-word' }}>
+            <code>{JSON.stringify(pokemon, null, 1)}</code>
+          </pre>
+        </>
       ) : null}
     </>
   );

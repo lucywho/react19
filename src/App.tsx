@@ -1,5 +1,5 @@
 /* eslint-disable react/react-in-jsx-scope */
-import { useState, useTransition } from 'react';
+import { useState, useTransition, Suspense } from 'react';
 import Products from './Products';
 import NavBar from './Nav';
 import About from './About';
@@ -43,7 +43,9 @@ export default function App() {
         {!isPending && tab === 'pokemon' && (
           <>
             <h1>Pokemon</h1>
-            <Pokemon />
+            <Suspense fallback={<p>Please wait</p>}>
+              <Pokemon />
+            </Suspense>
           </>
         )}
       </div>
