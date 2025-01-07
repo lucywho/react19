@@ -46,28 +46,31 @@ const About: React.FC = () => {
   }
 
   return (
-    <section id='about-form'>
-      <h2 className='username'>
-        Current user: {state && <span id='user-name'>{optimisticName}</span>}
-      </h2>
-      <p id='user-message'>
-        {/* {isPending && <span>Updating ...</span>} --> user feedback message no longer needed as display updates immediately */}
-        {state?.error && !isPending && <span>{state.error.message}</span>}
-      </p>
-      <form action={actionFunction}>
-        <section className='form-section'>
-          <label htmlFor='name1'>Name:</label>
-          <input type='text' id='name1' name='firstname' required />
-        </section>
-        <section className='form-section'>
-          <label htmlFor='name2'>Family Name:</label>
-          <input type='text' id='name2' name='lastname' required />
-        </section>
-        <SubmitButton type='submit' className='form-section user-name-submit'>
-          Update
-        </SubmitButton>
-      </form>
-    </section>
+    <>
+      <title>React19 App - About You</title>
+      <section id='about-form'>
+        <h2 className='username'>
+          Current user: {state && <span id='user-name'>{optimisticName}</span>}
+        </h2>
+        <p id='user-message'>
+          {/* {isPending && <span>Updating ...</span>} --> user feedback message no longer needed as display updates immediately */}
+          {state?.error && !isPending && <span>{state.error.message}</span>}
+        </p>
+        <form action={actionFunction}>
+          <section className='form-section'>
+            <label htmlFor='name1'>Name:</label>
+            <input type='text' id='name1' name='firstname' required />
+          </section>
+          <section className='form-section'>
+            <label htmlFor='name2'>Family Name:</label>
+            <input type='text' id='name2' name='lastname' required />
+          </section>
+          <SubmitButton type='submit' className='form-section user-name-submit'>
+            Update
+          </SubmitButton>
+        </form>
+      </section>
+    </>
   );
 };
 

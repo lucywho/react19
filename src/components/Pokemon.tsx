@@ -24,6 +24,8 @@ export default function Pokemon() {
 
   return (
     <>
+      <title>React19 App - Pokemon</title>
+      <meta name='keywords' content='pokemon, use(), react19' />
       <button onClick={togglePokemon} id='fetch-pokemon'>
         {url ? 'Clear Pokemon' : 'Fetch Pokemon'}
       </button>

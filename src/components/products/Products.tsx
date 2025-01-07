@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { sleep } from './utils';
+import { sleep } from './sleep';
 import products from './data';
 
 type ProductType = {
@@ -19,7 +19,13 @@ const Products: React.FC = memo(function ProductsList() {
     <SlowProduct key={product.id} product={product} />
   ));
 
-  return <ul>{productsList}</ul>;
+  return (
+    <>
+      <title>React19 App - Products</title>
+      <meta name='keywords' content='products, react19' />
+      <ul>{productsList}</ul>;
+    </>
+  );
 });
 
 function SlowProduct({ product }: ProductType) {
