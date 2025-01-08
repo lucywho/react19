@@ -1,12 +1,15 @@
 # About this repo
 
-This is a test app that I am using to explore new features in React 19
+[What's new in React 19](https://react.dev/blog/2024/12/05/react-19)
+
+This is a test app that I am using to explore new features in React 19.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 It uses the [Faker library](https://fakerjs.dev/api/commerce.html#product) to generate a list of products for a mock API call.
 
 It is based on the [What's new in React 19](https://www.youtube.com/watch?v=81uAxzeyL2I) by [Bob Ziroll](https://bsky.app/profile/bobziroll.bsky.social) on the [Free Code Camp YouTube Channel](https://www.youtube.com/@freecodecamp); I have used TypeScript and rolled all the tutorials into a single app.
+
 
 ## Features
 
@@ -19,8 +22,8 @@ It is based on the [What's new in React 19](https://www.youtube.com/watch?v=81uA
 ### Homepage
 
 - Basic component rendering a paragraph
-- includes a <title> tag in the component which React 19 hoists into the head
-- note: <title> removed from the `index.html` file to prevent the app having two titles in the head.
+- includes a `<title>` tag in the component which React 19 hoists into the head
+- note: `<title>` removed from the `index.html` file to prevent the app having two titles in the head.
 
 ### Products
 
@@ -28,7 +31,7 @@ It is based on the [What's new in React 19](https://www.youtube.com/watch?v=81uA
 - `data.ts` generates the list of products using the [Faker library](https://fakerjs.dev/)
 - `sleep.ts` function generates a delay to mock a slow response
 - Demonstrates the use of the `useTransition()` hook - the content loads slowly but the user is not stuck on the page until it completes.
-- includes <meta> tag in `return` block - React 19 hoists this to the head.
+- includes `<meta>` tag in `return` block - React 19 hoists this to the head.
 
 ### About You
 
